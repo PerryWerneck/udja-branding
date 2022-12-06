@@ -32,8 +32,6 @@ Group:			Development/Libraries/C and C++
 BuildRoot:		/var/tmp/%{name}-%{version}
 BuildArch:		noarch
 
-Requires:		libudjat1_0
-
 Provides:		udjat-branding = %{version}
 Conflicts:		otherproviders(udjat-branding)
 
@@ -41,6 +39,7 @@ Supplements:	packageand(udjat:branding-default)
 
 BuildRequires:  pkgconfig(libudjat)
 BuildRequires:	fdupes
+BuildRequires:	sed
 
 # Python scour & pre-reqs
 BuildRequires:	python-setuptools
@@ -60,22 +59,39 @@ Branding default for libudjat applications.
 
 %install
 
+mkdir -p %{buildroot}%{_datadir}/icons
 mkdir -p %{buildroot}%{httproot}/icons
 for SVG in icons/*.svg
 do
 	scour -i "${SVG}" -o "%{buildroot}%{httproot}/icons/$(basename ${SVG})"
 	chmod 644 "%{buildroot}%{httproot}/icons/$(basename ${SVG})"
+	ln -s "%{httproot}/icons/$(basename ${SVG})" "%{buildroot}%{_datadir}/icons/%{product_name}-$(basename ${SVG})"
 done
 
+mkdir -p %{buildroot}%{_sysconfdir}/%{product_name}.conf.d
 
+install "conf.d/50-branding.conf.in" "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
+
+sed -i -e \
+	"s|@PRODUCT_NAME@|%{product_name}|g" \
+	"%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
+	
+chmod 644 "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
+	
 %fdupes %{buildroot}/%{httproot}
+%fdupes %{buildroot}/%{_datadir}
+%fdupes %{buildroot}/%{_sysconfdir}
 
 %files
 %defattr(-,root,root)
 %dir %{httproot}
 %dir %{httproot}/icons
+%dir %{_sysconfdir}/%{product_name}.conf.d
+%config(noreplace) %{_sysconfdir}/%{product_name}.conf.d/*.conf
+
 
 %{httproot}/icons/*.svg
+%{_datadir}/icons/*.svg
 
 %changelog
 
