@@ -68,6 +68,13 @@ do
 	ln -s "%{httproot}/icons/$(basename ${SVG})" "%{buildroot}%{_datadir}/icons/%{product_name}-$(basename ${SVG})"
 done
 
+mkdir -p %{buildroot}%{httproot}/images
+for SVG in images/*.svg
+do
+	scour -i "${SVG}" -o "%{buildroot}%{httproot}/images/$(basename ${SVG})"
+	chmod 644 "%{buildroot}%{httproot}/images/$(basename ${SVG})"
+done
+
 mkdir -p %{buildroot}%{_sysconfdir}/%{product_name}.conf.d
 
 install "conf.d/50-branding.conf.in" "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
@@ -86,11 +93,13 @@ chmod 644 "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
 %defattr(-,root,root)
 %dir %{httproot}
 %dir %{httproot}/icons
+%dir %{httproot}/images
 %dir %{_sysconfdir}/%{product_name}.conf.d
 %config(noreplace) %{_sysconfdir}/%{product_name}.conf.d/*.conf
 
 
 %{httproot}/icons/*.svg
+%{httproot}/images/*.svg
 %{_datadir}/icons/*.svg
 
 %changelog
