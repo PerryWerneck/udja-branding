@@ -11,7 +11,7 @@
    width="316"
    height="316"
    version="1.1"
-   sodipodi:docname="ready.svg"
+   sodipodi:docname="disabled.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <defs
      id="defs9" />
@@ -30,7 +30,7 @@
      showgrid="false"
      inkscape:pagecheckerboard="true"
      inkscape:zoom="1.4885246"
-     inkscape:cx="190.76964"
+     inkscape:cx="189.42602"
      inkscape:cy="145.8113"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -54,7 +54,7 @@
     </rdf:RDF>
   </metadata>
   <ellipse
-     style="fill:#006800;fill-opacity:1;stroke:#00a500;stroke-width:29.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:#686868;fill-opacity:1;stroke:#a5a5a5;stroke-width:29.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path836"
      cx="158"
      cy="158"
