@@ -74,6 +74,7 @@ do
 	scour -i "${SVG}" -o "%{buildroot}%{httproot}/images/$(basename ${SVG})"
 	chmod 644 "%{buildroot}%{httproot}/images/$(basename ${SVG})"
 done
+ln %{buildroot}%{httproot}/images/logo.svg %{buildroot}%{httproot}/images/%{product_name}.svg
 
 mkdir -p %{buildroot}%{_sysconfdir}/%{product_name}.conf.d
 
