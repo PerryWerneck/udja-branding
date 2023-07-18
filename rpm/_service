@@ -7,7 +7,7 @@
 		<param name="versionformat">@PARENT_TAG@+git%cd</param>
 		<param name="url">https://github.com/PerryWerneck/udjat-branding</param>
 		<param name="scm">git</param>
-		<param name="filename">udjat-branding-default</param>
+		<param name="filename">udjat-branding-upstream</param>
 		<!-- param name="revision">develop</param -->
 	</service>
 

@@ -1,5 +1,5 @@
 #
-# spec file for package libudjat
+# spec file for package udjat-branding-upstream
 #
 # Copyright (c) 2015 SUSE LINUX GmbH, Nuernberg, Germany.
 # Copyright (C) <2008> <Banco do Brasil S.A.>
@@ -20,22 +20,22 @@
 %define httproot /srv/www/htdocs/%{product_name}
 
 Summary:		Branding for libudjat applications 
-Name:			udjat-branding-default
+Name:			udjat-branding-upstream
 Version:		1.0
 Release:		0
 License:		LGPL-3.0
 Source:			%{name}-%{version}.tar.xz
 
-URL:			https://github.com/PerryWerneck/udjat-module-network
+URL:			https://github.com/PerryWerneck/udjat-branding
 
 Group:			Development/Libraries/C and C++
 BuildRoot:		/var/tmp/%{name}-%{version}
 BuildArch:		noarch
 
-Provides:		udjat-branding = %{version}
-Conflicts:		otherproviders(udjat-branding)
+Provides:		%{product_name}-branding = %{version}
+Conflicts:		otherproviders(%{product_name}-branding)
 
-Supplements:	packageand(udjat:branding-default)
+Supplements:	packageand(%{product_name}:branding-upstream)
 
 BuildRequires:  pkgconfig(libudjat)
 BuildRequires:	fdupes
@@ -97,7 +97,6 @@ chmod 644 "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
 %dir %{httproot}/images
 %dir %{_sysconfdir}/%{product_name}.conf.d
 %config(noreplace) %{_sysconfdir}/%{product_name}.conf.d/*.conf
-
 
 %{httproot}/icons/*.svg
 %{httproot}/images/*.svg
