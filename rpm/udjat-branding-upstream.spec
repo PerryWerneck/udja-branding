@@ -42,10 +42,10 @@ BuildRequires:	fdupes
 BuildRequires:	sed
 
 # Python scour & pre-reqs
-BuildRequires:	python-setuptools
+BuildRequires:	python3-setuptools
 BuildRequires:	python-xml
 BuildRequires:	python-scour
-#BuildRequires:	python3-css-html-js-minify
+BuildRequires:	python3-css-html-js-minify
 
 %description
 Branding default for libudjat applications.
@@ -76,6 +76,13 @@ do
 done
 ln %{buildroot}%{httproot}/images/logo.svg %{buildroot}%{httproot}/images/%{product_name}.svg
 
+mkdir -p %{buildroot}%{httproot}/css
+for CSS in css/*.css
+do
+	css-html-js-minify "${CSS}"
+	install --mode=644 "css/$(basename --suffix=.css ${CSS}).min.css" "%{buildroot}%{httproot}/${CSS}"
+done
+
 mkdir -p %{buildroot}%{_sysconfdir}/%{product_name}.conf.d
 
 install "conf.d/50-branding.conf.in" "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
@@ -95,11 +102,14 @@ chmod 644 "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
 %dir %{httproot}
 %dir %{httproot}/icons
 %dir %{httproot}/images
+%dir %{httproot}/css
 %dir %{_sysconfdir}/%{product_name}.conf.d
 %config(noreplace) %{_sysconfdir}/%{product_name}.conf.d/*.conf
 
 %{httproot}/icons/*.svg
 %{httproot}/images/*.svg
+%{httproot}/css/*.css
+
 %{_datadir}/icons/*.svg
 
 %changelog
