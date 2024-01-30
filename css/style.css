@@ -1,0 +1,20 @@
+
+/* Standard layout */
+html {
+	min-height:100%;
+	display:grid;
+}
+
+body {
+}
+
+/* Login page */
+
+.login-body {
+	margin:auto;
+} 
+
+.login-body > form {
+	padding:1em 1em 7em 1em;
+}
+
