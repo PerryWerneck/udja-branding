@@ -60,11 +60,16 @@ Branding default for libudjat applications.
 %install
 
 mkdir -p %{buildroot}%{_datadir}/icons
+mkdir -p %{buildroot}%{_datadir}/icons/%{product_name}
 mkdir -p %{buildroot}%{httproot}/icons
+mkdir -p %{buildroot}%{httproot}/icons/%{product_name}
 for SVG in icons/*.svg
 do
 	scour -i "${SVG}" -o "%{buildroot}%{httproot}/icons/$(basename ${SVG})"
 	chmod 644 "%{buildroot}%{httproot}/icons/$(basename ${SVG})"
+	ln -s "%{httproot}/icons/$(basename ${SVG})" "%{buildroot}%{_datadir}/icons/%{product_name}/$(basename ${SVG})"
+
+	# This is just for legacy modules & Applications
 	ln -s "%{httproot}/icons/$(basename ${SVG})" "%{buildroot}%{_datadir}/icons/%{product_name}-$(basename ${SVG})"
 done
 
@@ -109,6 +114,9 @@ chmod 644 "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
 %{httproot}/icons/*.svg
 %{httproot}/images/*.svg
 %{httproot}/css/*.css
+
+%dir %{_datadir}/icons/%{product_name}
+%{_datadir}/icons/%{product_name}/*.svg
 
 %{_datadir}/icons/*.svg
 

@@ -1,0 +1,29 @@
+[Icon Theme]
+Name=Udjat
+Comment=Icon theme for libudjat based applications
+Example=folder
+
+# Directory list
+Directories=scalable/status, scalable/ui
+
+[scalable/status]
+Context=Status
+Size=16
+MinSize=8
+MaxSize=512
+Type=Scalable
+
+[scalable/ui]
+Context=UI
+Size=16
+MinSize=8
+MaxSize=512
+Type=Scalable
+
+[scalable/apps]
+Context=Applications
+Size=16
+MinSize=8
+MaxSize=512
+Type=Scalable
+
