@@ -16,11 +16,14 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
+# References:
+#	https://en.opensuse.org/openSUSE:Packaging_Branding
+
 %define product_name %(pkg-config --variable=product_name libudjat)
 %define httproot /srv/www/htdocs/%{product_name}
 
-Summary:		Branding for libudjat applications 
-Name:			udjat-branding-upstream
+Summary:		Branding for %{product_name} 
+Name:			%{product_name}-branding-upstream
 Version:		1.0
 Release:		0
 License:		LGPL-3.0
@@ -32,10 +35,17 @@ Group:			Development/Libraries/C and C++
 BuildRoot:		/var/tmp/%{name}-%{version}
 BuildArch:		noarch
 
+BuildRequires:  gdk-pixbuf-loader-rsvg
+BuildRequires:  gtk3-tools >= 3.24.2
+
+# To make sure the icon theme cache gets generated
+Requires(post):	(gtk3-tools if libgtk-3-0)
+Requires(post):	(gtk4-tools if libgtk-4-1)
+
+Enhances:		%{product_name}	
+Supplements:	packageand(%{product_name}:branding-upstream)
 Provides:		%{product_name}-branding = %{version}
 Conflicts:		otherproviders(%{product_name}-branding)
-
-Supplements:	packageand(%{product_name}:branding-upstream)
 
 BuildRequires:  pkgconfig(libudjat)
 BuildRequires:	fdupes
@@ -48,7 +58,18 @@ BuildRequires:	python-scour
 BuildRequires:	python3-css-html-js-minify
 
 %description
-Branding default for libudjat applications.
+Upstream branding for libudjat applications.
+
+%package -n %{product_name}-branding-http-upstream
+Summary:		HTTP branding for %{product_name}
+
+Enhances:		%{product_name}-module-http	
+Supplements:	packageand(%{product_name}-module-http:branding-upstream)
+Provides:		%{product_name}-branding-http = %{version}
+Conflicts:		otherproviders(%{product_name}-branding-http)
+
+%description -n %{product_name}-branding-http-upstream
+Upstream branding for %{product_name} http server modules.
 
 #---[ Build & Install ]-----------------------------------------------------------------------------------------------
 
@@ -63,15 +84,23 @@ mkdir -p %{buildroot}%{_datadir}/icons
 mkdir -p %{buildroot}%{_datadir}/icons/%{product_name}
 mkdir -p %{buildroot}%{httproot}/icons
 mkdir -p %{buildroot}%{httproot}/icons/%{product_name}
-for SVG in icons/*.svg
-do
-	scour -i "${SVG}" -o "%{buildroot}%{httproot}/icons/$(basename ${SVG})"
-	chmod 644 "%{buildroot}%{httproot}/icons/$(basename ${SVG})"
-	ln -s "%{httproot}/icons/$(basename ${SVG})" "%{buildroot}%{_datadir}/icons/%{product_name}/$(basename ${SVG})"
 
-	# This is just for legacy modules & Applications
-	ln -s "%{httproot}/icons/$(basename ${SVG})" "%{buildroot}%{_datadir}/icons/%{product_name}-$(basename ${SVG})"
+mkdir -p "%{buildroot}%{_datadir}/icons/%{product_name}"
+install --mode=644 "icons/index.theme" "%{buildroot}%{_datadir}/icons/%{product_name}"
+
+cd icons
+for SVG in $(find . -iname *.svg)
+do
+	mkdir -p $(dirname "%{buildroot}%{httproot}/${SVG}")
+	scour -i "${SVG}" -o "%{buildroot}%{httproot}/icons/${SVG}"
+	chmod 644 "%{buildroot}%{httproot}/icons/${SVG}"
+	mkdir -p $(dirname "%{buildroot}%{_datadir}/icons/%{product_name}/${SVG}")
+	install --mode=644 "%{buildroot}%{httproot}/icons/${SVG}" "%{buildroot}%{_datadir}/icons/%{product_name}/${SVG}"
 done
+cd ..
+
+find %{buildroot}
+exit -1
 
 mkdir -p %{buildroot}%{httproot}/images
 for SVG in images/*.svg
@@ -98,27 +127,33 @@ sed -i -e \
 	
 chmod 644 "%{buildroot}%{_sysconfdir}/%{product_name}.conf.d/50-branding.conf"
 	
+%{icon_theme_cache_create_ghost %{product_name}}	
 %fdupes %{buildroot}/%{httproot}
 %fdupes %{buildroot}/%{_datadir}
 %fdupes %{buildroot}/%{_sysconfdir}
 
 %files
 %defattr(-,root,root)
-%dir %{httproot}
-%dir %{httproot}/icons
-%dir %{httproot}/images
-%dir %{httproot}/css
 %dir %{_sysconfdir}/%{product_name}.conf.d
 %config(noreplace) %{_sysconfdir}/%{product_name}.conf.d/*.conf
 
-%{httproot}/icons/*.svg
-%{httproot}/images/*.svg
-%{httproot}/css/*.css
+%ghost %{_datadir}/icons/%{product_name}/icon-theme.cache
 
-%dir %{_datadir}/icons/%{product_name}
-%{_datadir}/icons/%{product_name}/*.svg
+%dir %{_datadir}/*/%{product_name}
+%dir %{_datadir}/*/%{product_name}/*
 
-%{_datadir}/icons/*.svg
+%dir %{_datadir}/icons/%{product_name}/*/*
+%{_datadir}/icons/%{product_name}/*/*/*.svg
+%{_datadir}/icons/%{product_name}/index.theme
+
+%files -n %{product_name}-branding-http-upstream
+%defattr(-,root,root)
+%dir %{httproot}
+%dir %{httproot}/*
+%dir %{httproot}/icons/*
+%{httproot}/*/*.css
+%{httproot}/*/*/*.svg
+%{httproot}/*/*.svg
 
 %changelog
 

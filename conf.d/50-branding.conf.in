@@ -1,4 +1,4 @@
 [theme]
-iconpath=/srv/www/htdocs/@PRODUCT_NAME@/icons/,/usr/share/icons/@PRODUCT_NAME@/,/usr/share/icons/Adwaita/,/usr/share/icons/gnome/,/usr/share/icons/hicolor/,/usr/share/icons/HighContrast/
+iconpath=/usr/share/icons/@PRODUCT_NAME@/,/usr/share/icons/Adwaita/,/usr/share/icons/gnome/,/usr/share/icons/hicolor/,/usr/share/icons/HighContrast/
 
 
