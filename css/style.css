@@ -7,16 +7,21 @@ html {
 
 body {
 	font-family: lato,sans-serif;
+
 }
 
 /* Login/Error pages */
 
 .login-body, .error-body {
-	background-color: #	060416;
+	background-color: #060416;
 	margin: auto;
+	background-image: url("/udjat/images/background.svg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;	
 } 
 
-.login-body > form {
+.login-body > form, .dialog-box {
 	padding: 1rem 1rem 1rem 1rem;
 	margin: 1rem 1rem 7rem 1rem;
 	border: 1px solid #817777;
@@ -26,7 +31,7 @@ body {
 	width: 21rem;
 }
 
-.login-body h1 {
+.login-body h1, .dialog-box h1 {
 	font-size: 1.5rem;
 	font-weight: normal;
 	margin: 0 auto 1.2rem auto;	
