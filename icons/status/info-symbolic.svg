@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   fill="#000000"
+   version="1.1"
+   id="Capa_1"
+   width="350"
+   height="350"
+   viewBox="0 0 182.42831 182.42831"
+   xml:space="preserve"
+   sodipodi:docname="info-icon-svgrepo-com.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"><metadata
+   id="metadata11"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs9">
+	
+</defs><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1366"
+   inkscape:window-height="714"
+   id="namedview7"
+   showgrid="false"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0"
+   inkscape:zoom="0.5675"
+   inkscape:cx="398.23772"
+   inkscape:cy="399.99936"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Capa_1" />
+<path
+   d="M 155.75173,26.75559 C 120.15236,-8.8875172 62.399282,-8.9229547 26.755716,26.675965 -8.887413,62.275761 -8.923288,120.02923 26.676526,155.67277 c 35.598942,35.64311 93.352894,35.67855 128.996454,0.0792 35.6427,-35.59892 35.67857,-93.353262 0.0788,-128.99637 z m -51.80175,122.33806 c 0,1.40744 -1.14056,2.54712 -2.54713,2.54712 H 81.025847 c -1.406563,0 -2.547125,-1.13968 -2.547125,-2.54712 V 73.449505 c 0,-1.407437 1.140562,-2.547124 2.547125,-2.547124 h 20.377003 c 1.40657,0 2.54713,1.13925 2.54713,2.547124 z M 91.214348,60.331511 c -8.145376,0 -14.772627,-6.626371 -14.772627,-14.77218 0,-8.144933 6.626814,-14.772618 14.772627,-14.772618 8.145813,0 14.772632,6.627247 14.772632,14.772618 0,8.145809 -6.627694,14.77218 -14.772632,14.77218 z"
+   id="path2"
+   style="stroke-width:0.4375" />
+</svg>
